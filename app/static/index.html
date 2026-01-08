@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Ray Triage AI | Next-Gen Diagnostics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+
+    <nav>
+        <div class="logo">
+            <span class="pulse-icon"></span>
+            <h1>X-RAY<span>AI</span></h1>
+        </div>
+        <div class="status-badge" id="api-status">
+            <span class="status-dot"></span>
+            System Online
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>Instant AI <span>Triage</span></h2>
+            <p>Upload a chest X-ray for immediate pneumonia detection with 95% accuracy.</p>
+        </section>
+
+        <div class="container">
+            <div class="upload-card">
+                <div class="glass-inner" id="drop-zone">
+                    <div class="upload-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </div>
+                    <h3>Drag & Drop X-Ray</h3>
+                    <p>or click to browse files</p>
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                </div>
+            </div>
+
+            <div class="result-card hidden" id="result-card">
+                <div class="scan-container">
+                    <img id="preview-img" src="" alt="X-Ray Preview">
+                    <div class="scanner-bar"></div>
+                </div>
+
+                <div class="analysis-details">
+                    <div class="result-header">
+                        <h4 id="prediction-label">Analyzing...</h4>
+                        <div class="confidence-meter">
+                            <div class="meter-bar" id="confidence-bar" style="width: 0%"></div>
+                            <span id="confidence-text">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="diagnosis-report">
+                        <p id="diagnosis-text">The AI is currently processing the image patterns to identify potential
+                            signs of pneumonia.</p>
+                    </div>
+
+                    <button class="reset-btn" onclick="resetApp()">Analyze New Image</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 X-Ray AI Diagnostics. Powered by SimpleCNN Architecture.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
