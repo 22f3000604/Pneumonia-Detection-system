@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Dataset (too large for GitHub, download from Kaggle)
+chest-xray-pneumonia.zip
+chest_xray/
+data/
+
+# Trained model (optional — remove this line if you want to include it)
+models/
+
+# OS files
+.DS_Store

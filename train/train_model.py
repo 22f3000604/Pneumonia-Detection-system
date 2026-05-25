@@ -77,6 +77,9 @@ def train_model(data_dir, num_epochs=5, batch_size=32):
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
     # 5. The Training Loop
+    best_val_acc = 0.0  # Track the best validation accuracy seen so far
+    os.makedirs("models", exist_ok=True)
+
     for epoch in range(num_epochs):
         print(f"\nEpoch {epoch+1}/{num_epochs}")
         
@@ -114,10 +117,14 @@ def train_model(data_dir, num_epochs=5, batch_size=32):
 
             print(f"{phase.capitalize()} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}")
 
-    # 6. Save the trained "brain"
-    os.makedirs("models", exist_ok=True)
-    torch.save(model.state_dict(), "models/best_model.pth")
-    print("\nTraining complete! Model saved to models/best_model.pth")
+            # 6. Save the model ONLY when validation accuracy improves
+            if phase == 'val' and epoch_acc > best_val_acc:
+                best_val_acc = epoch_acc
+                torch.save(model.state_dict(), "models/best_model.pth")
+                print(f"  ✅ New best model saved! (Val Acc: {epoch_acc:.4f})")
+
+    print(f"\nTraining complete! Best Val Accuracy: {best_val_acc:.4f}")
+    print("Best model saved to models/best_model.pth")
 
 if __name__ == "__main__":
     train_model("data", num_epochs=15)
